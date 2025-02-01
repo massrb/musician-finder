@@ -26,9 +26,11 @@ class Updater
       location = br.element(tag_name: 'strong', class: 'location').text
       usr = br.element(tag_name: 'strong', class: 'user').text
       music = br.element(tag_name: 'strong', class: 'music').text
+      img_src = br.element(tag_name: 'img', id: 'profile_image').attribute_values[:src]
+      puts 'src:' + img_src.to_s
       puts 'text: ' + location.to_s + ' - ' + usr.to_s + ' - ' + music.to_s
-      prof.parse_data(user: usr, music: music, location: location) unless prof.parsed
-      sleep 3
+      prof.parse_data(user: usr, music: music, location: location, image_url: img_src) unless prof.parsed
+      sleep 1
     end
   end
 

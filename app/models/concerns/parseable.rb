@@ -1,3 +1,5 @@
+require 'open-uri'
+
 module Parseable
   extend ActiveSupport::Concern
 
@@ -14,6 +16,8 @@ module Parseable
       gender = mat2[2]
     end
     self.update(music: data[:music], age: age, gender: gender, zip: zip, state: state, town: town, parsed: true)
+    file = URI.open(data[:image_url])
+    self.image.attach(io: file, filename: 'image.jpg', content_type: 'image/jpeg')    
     puts "age:" + age.to_s + ' gender:' + gender.to_s + ' zip:' + zip.to_s
   end
 
