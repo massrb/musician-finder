@@ -4,10 +4,13 @@ class ApiController < ApplicationController
   def create
     # Example data handling
     # Assuming you're sending JSON data
-    data = JSON.parse(request.body.read)['bookmark'][0]
+    data = JSON.parse(request.body.read)['bookmark']
 
-    @profile = Profile.create(title: data['title'], url: data['url'], instrument: data['instrument'])
-
+    data.each do |prof|
+      unless Profile.where(url: prof['url']).any?
+        Profile.create(title: prof['title'], url: prof['url'], instrument: prof['instrument'])
+      end
+    end
     # if @profile.save
     #     render json: @profile, status: :ok, location: @profile
     # else

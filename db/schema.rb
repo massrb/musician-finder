@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_31_162957) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_01_000341) do
   create_table "profiles", force: :cascade do |t|
     t.string "url"
     t.string "title"
@@ -21,5 +21,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_31_162957) do
     t.string "zip"
     t.string "user"
     t.string "plays"
+    t.string "gender"
+    t.string "town"
+    t.integer "age"
+    t.string "state"
+    t.boolean "parsed"
+    t.string "music"
   end
 end

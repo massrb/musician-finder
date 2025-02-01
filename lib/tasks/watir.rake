@@ -23,8 +23,11 @@ class Updater
     br = @browser
     Profile.all.each do |prof|
       br.goto prof.url
-      txt = br.element(:tag_name => 'strong').text
-      puts 'text: ' + txt.to_s
+      location = br.element(tag_name: 'strong', class: 'location').text
+      usr = br.element(tag_name: 'strong', class: 'user').text
+      music = br.element(tag_name: 'strong', class: 'music').text
+      puts 'text: ' + location.to_s + ' - ' + usr.to_s + ' - ' + music.to_s
+      prof.parse_data(user: usr, music: music, location: location) unless prof.parsed
       sleep 3
     end
   end
