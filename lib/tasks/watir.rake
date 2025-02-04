@@ -3,12 +3,13 @@ require 'webdrivers'
 
 class Updater
   def initialize
+    cred = Rails.application.credentials.music
     @browser = Watir::Browser.new :firefox
-    @browser.goto 'http://www.bandmix.com' 
+    @browser.goto cred[:website]
   end
 
   def sign_in
-    cred = Rails.application.credentials.bandmix
+    cred = Rails.application.credentials.music
     br = @browser
     br.link(:id =>"sign-in").click
 
