@@ -1,4 +1,6 @@
 class Profile < ApplicationRecord
+  has_many :mailings
+  has_many :emails, through: :mailings
 	has_one_attached :image
   include Parseable
 
